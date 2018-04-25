@@ -1,0 +1,172 @@
+---
+swagger: "2.0"
+info:
+  description: "Seed for discussion: can be implemented for asserting a repository\
+    \ is FAIR. Directories that contain lists of scored FAIR repositories can call\
+    \ this API on repos that implement it in order to automate some of the scoring\
+    \ process."
+  version: "0.0.2"
+  title: "Prototype"
+  contact:
+    name: "Kimberly Robasky"
+    url: "https://commonfund.nih.gov/commons"
+    email: "krobasky@renci.org"
+  license:
+    name: "cc0 Attribution v4.0 International"
+    url: "https://creativecommons.org/licenses/by/4.0/legalcode"
+host: "virtserver.swaggerhub.com"
+basePath: "/krobasky/proto-FAIR/prototype"
+schemes:
+- "https"
+paths:
+  /objects:
+    get:
+      summary: "Gets some objects"
+      description: "Returns a list containing all objects matching a keyword. The\
+        \ list supports paging."
+      operationId: "objectsGET"
+      parameters:
+      - name: "keyword"
+        in: "query"
+        description: "chosen from the manifest at random"
+        required: false
+        type: "string"
+      - name: "pageSize"
+        in: "query"
+        description: "Number of objects returned"
+        required: false
+        type: "integer"
+      - name: "pageNumber"
+        in: "query"
+        description: "Page number"
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "A list of objects"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "Default"
+  /objects/{objectid}:
+    get:
+      summary: "metadata for objectid"
+      description: "get the metadata for the specified object"
+      operationId: "objectsObjectidGET"
+      parameters:
+      - name: "objectid"
+        in: "path"
+        description: "a unique id for the object"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "metadata matching the object id"
+          schema:
+            $ref: "#/definitions/FAIRObject"
+        404:
+          description: "Object does not exist in repo."
+      x-swagger-router-controller: "Default"
+  /repoInfo:
+    get:
+      summary: "FAIR repo information"
+      description: "provides rich information about the FAIR repo housing the data\
+        \ objects"
+      operationId: "repoInfoGET"
+      parameters:
+      - name: "scoringEngine"
+        in: "query"
+        description: "To which FAIRness scoringEngine the response must be target"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful request for repo main information"
+          schema:
+            $ref: "#/definitions/FAIRRepo"
+      x-swagger-router-controller: "Default"
+definitions:
+  FAIRObject:
+    properties:
+      keywords:
+        type: "string"
+        description: "keywords and the ontology, data dictionary, vocabulary to which\
+          \ they belong. Format is defined by the scoringEngine."
+      version:
+        type: "string"
+      object_schema:
+        type: "string"
+      persistence:
+        type: "string"
+      contact:
+        type: "string"
+      derived_from:
+        type: "string"
+      cited_by:
+        type: "string"
+      license:
+        type: "string"
+        description: "access rules and also how to get access"
+    example:
+      license: "license"
+      keywords: "keywords"
+      contact: "contact"
+      derived_from: "derived_from"
+      persistence: "persistence"
+      cited_by: "cited_by"
+      object_schema: "object_schema"
+      version: "version"
+  FAIRRepo:
+    properties:
+      contact_name:
+        type: "string"
+        description: "name of the person or organization to contact regarding objects\
+          \ in this repo"
+      contact_email:
+        type: "string"
+        description: "the email of the individual or helpdesk to contact for this\
+          \ repo (if not form is given)"
+      contact_form:
+        type: "string"
+        description: "the form to use to contact the individual or helpdesk for this\
+          \ repo (if no email is given)"
+      landing_page:
+        type: "string"
+      terms_of_service:
+        type: "string"
+        description: "terms of use, including disclaimers, privacy notices, limited\
+          \ liability"
+      repo_license_name:
+        type: "string"
+        description: "this need not be specified if licenses are given at the collection\
+          \ and file level."
+      repo_license_URL:
+        type: "string"
+        description: "this need not be specified if licenses are given at the collection\
+          \ and file level."
+      supported_scoring_engines:
+        type: "string"
+        description: "must support at least \"Prototype\", version \"v1.0\""
+      manifest:
+        type: "string"
+        description: "exhaustive list that can be sampled for testing. Format determined\
+          \ by scoring engine. Maps object ids to license type and (accessibility)\
+          \ and maps object ids to ontology/keywords. Ontologies must be computer-readable\
+          \ so they are accessible from the web"
+    example:
+      contact_name: "contact_name"
+      repo_license_name: "repo_license_name"
+      contact_form: "contact_form"
+      manifest: "manifest"
+      terms_of_service: "terms_of_service"
+      landing_page: "landing_page"
+      supported_scoring_engines: "supported_scoring_engines"
+      repo_license_URL: "repo_license_URL"
+      contact_email: "contact_email"
+  inline_response_200:
+    properties:
+      total_objects:
+        type: "integer"
+    example:
+      total_objects: 0
