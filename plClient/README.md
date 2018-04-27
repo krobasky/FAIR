@@ -1,3 +1,26 @@
+# OVERVIEW
+FAIRRepoClient.pl
+Run FAIRRepoClient.pl -h for help.
+
+Dependencies:
+#   LWP::Protocol::https
+#   Class::Accessor
+#   DateTime
+#   Class::Data::Inheritable
+#   JSON
+#   URI::Query
+#   LWP::UserAgent
+#   Log::Any
+#   Moose
+#   Class::Load::XS
+#   Class::Load
+#   Test::Exception
+#
+
+Copyright 2018 University of North Carolina Board of Trustees
+All Rights Reserved
+
+
 # NAME
 
 WWW::SwaggerClient::Role - a Moose role for the Prototype

@@ -14,8 +14,8 @@ info:
   license:
     name: "cc0 Attribution v4.0 International"
     url: "https://creativecommons.org/licenses/by/4.0/legalcode"
-host: "virtserver.swaggerhub.com"
-basePath: "/krobasky/proto-FAIR/prototype"
+host: "18.220.156.186:8089"
+basePath: "/FAIR-AT/0.0.2"
 schemes:
 - "https"
 paths:
@@ -47,7 +47,13 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/inline_response_200"
+              properties:
+                objectid:
+                  type: "string"
+                keywords:
+                  type: "string"
+              example:
+                objectid: 0
       x-swagger-router-controller: "Default"
   /objects/{objectid}:
     get:
@@ -164,9 +170,3 @@ definitions:
       supported_scoring_engines: "supported_scoring_engines"
       repo_license_URL: "repo_license_URL"
       contact_email: "contact_email"
-  inline_response_200:
-    properties:
-      total_objects:
-        type: "integer"
-    example:
-      total_objects: 0
