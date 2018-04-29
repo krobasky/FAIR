@@ -1,6 +1,6 @@
 {
-  "name": "prototype",
-  "version": "0.0.2",
+  "name": "FAIR",
+  "version": "0.0.1",
   "description": "Seed for discussion: can be implemented for asserting a repository is FAIR. Directories that contain lists of scored FAIR repositories can call this API on repos that implement it in order to automate some of the scoring process.",
   "main": "index.js",
   "scripts": {

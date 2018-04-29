@@ -5,7 +5,7 @@ info:
     \ is FAIR. Directories that contain lists of scored FAIR repositories can call\
     \ this API on repos that implement it in order to automate some of the scoring\
     \ process."
-  version: "0.0.2"
+  version: "0.0.1"
   title: "Prototype"
   contact:
     name: "Kimberly Robasky"
@@ -15,7 +15,7 @@ info:
     name: "cc0 Attribution v4.0 International"
     url: "https://creativecommons.org/licenses/by/4.0/legalcode"
 host: "18.220.156.186:8089"
-basePath: "/FAIR-AT/0.0.2"
+basePath: "/FAIR/v0.0.1"
 schemes:
 - "https"
 paths:
