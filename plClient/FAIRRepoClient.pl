@@ -50,8 +50,8 @@ our $gLimit = 1;
 our $gPage = 20;
 our $gScoringEngine = "prototype";
 our $gKeywords = "";#'thyroid';
-our $gURL = 'http://18.220.156.186:8089/FAIR-AT/0.0.2';
-#our $gURL = 'http://18.220.156.186:8089/FAIR/v0.0.1';
+#our $gURL = 'http://18.220.156.186:8089/FAIR-AT/0.0.2';
+our $gURL = 'http://18.220.156.186:8089/FAIR/v0.0.1';
 our $gVerbose= 0; 
 our $gRepo = 0;
 
