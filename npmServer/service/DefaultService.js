@@ -120,9 +120,21 @@ exports.repoInfoGET = function(scoringEngine) {
 	  "contact_email" : "contact_email"
       };
       
-      var cfg = require('../config-repo.json')
       var repo = {};
-      repo['application/json']={
+
+      repo['application/json'] = {
+	  "contact_name" : "Jane Doe",
+	  "repo_license_name" : "cc0 Attribution v4.0 International",
+	  "contact_form" : "",
+	  "manifest" : "/Manifest.prototype.tsv",
+	  "terms_of_service" : "/tos.html",
+	  "landing_page" : "/about.html",
+	  "supported_scoring_engines" : "prototype",
+	  "repo_license_URL" : "https://creativecommons.org/licenses/by/4.0/legalcode",
+	  "contact_email" : "jdoe@gmail.com"
+      };
+/*
+      repo['application/json'] = {
 	  "contact_name" : cfg.contact_name,
 	  "repo_license_name" : cfg.repo_license_name,
 	  "contact_form" : cfg.contact_form,
@@ -133,7 +145,7 @@ exports.repoInfoGET = function(scoringEngine) {
 	  "repo_license_URL" : cfg.repo_license_URL,
 	  "contact_email" : cfg.contact_email
       };
-      
+*/      
       if (Object.keys(repo).length > 0) {
 	  resolve(repo[Object.keys(repo)[0]]);
       } else {
